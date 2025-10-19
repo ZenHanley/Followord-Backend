@@ -14,8 +14,8 @@ const pool = new Pool({
   user: "postgres",
   host: "localhost",
   database: "postgres",
-  password: "Gragknock18830",
-  port: 5432,
+  password: "Gragknock18830!",
+  port: 3000,
   idleTimeoutMillis: 300
 });
 
@@ -69,8 +69,8 @@ app.post("/api/usertime", async (req,res) => {
 
   const data = req.body;
   
-  const insertQuery = `INSERT INTO usertime (language_start_date, language_start_time, language_end_time, learning_option, language_option) 
-    VALUES ('${data.language_start_date}', '${data.language_start_time}', '${data.language_end_time}', '${data.learning_option}', '${data.language_option}')`;
+  const insertQuery = `INSERT INTO usertime (language_start_date, language_end_date, learning_option, language_option, hours_selected) 
+    VALUES ( '${data.language_start_date}', '${data.language_end_date}', '${data.learning_option}', '${data.language_option}','${data.hours_selected}')`;
 
   console.log("About to run the query " + insertQuery);
   
@@ -83,7 +83,7 @@ app.post("/api/usertime", async (req,res) => {
 });
 
 // Send data to frontend & userdetails data sheet
-app.post("/api/usertime", async (req,res) => {
+app.post("/api/userdetails", async (req,res) => {
   console.log("Hit /api/userdetails endpoint with a POST request");
   console.log("The body is");
   console.log(req.body)
@@ -104,6 +104,6 @@ app.post("/api/usertime", async (req,res) => {
 });
 
 // Command to run Backend Server
-app.listen(3000, () => {
-  console.log('The program is waiting for messages.Server running at http://localhost:3000');
+app.listen(3001, () => {
+  console.log('The program is waiting for messages.Server running at http://localhost:3001');
 });
